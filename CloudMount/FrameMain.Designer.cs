@@ -61,7 +61,7 @@
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(252, 30);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(123, 30);
             this.exitToolStripMenuItem.Text = "E&xit";
             // 
             // cloudToolStripMenuItem
@@ -78,6 +78,7 @@
             this.connectToAWSToolStripMenuItem.Name = "connectToAWSToolStripMenuItem";
             this.connectToAWSToolStripMenuItem.Size = new System.Drawing.Size(252, 30);
             this.connectToAWSToolStripMenuItem.Text = "Connect to AWS";
+            this.connectToAWSToolStripMenuItem.Click += new System.EventHandler(this.connectToAWSToolStripMenuItem_Click);
             // 
             // connectToGCPToolStripMenuItem
             // 
@@ -108,6 +109,7 @@
             this.Name = "FrameMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CloudMount";
+            this.Load += new System.EventHandler(this.FrameMain_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);

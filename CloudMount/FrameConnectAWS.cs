@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace CloudMount
 {
-    public partial class FrameConnectGCP : Form
+    public partial class FrameConnectAWS : Form
     {
-        public FrameConnectGCP()
+        public FrameConnectAWS()
         {
             InitializeComponent();
         }

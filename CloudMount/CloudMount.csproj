@@ -85,11 +85,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FrameConnectGCP.cs">
+    <Compile Include="FrameConnectAWS.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrameConnectGCP.Designer.cs">
-      <DependentUpon>FrameConnectGCP.cs</DependentUpon>
+    <Compile Include="FrameConnectAWS.Designer.cs">
+      <DependentUpon>FrameConnectAWS.cs</DependentUpon>
     </Compile>
     <Compile Include="FrameMain.cs">
       <SubType>Form</SubType>
@@ -99,8 +99,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="FrameConnectGCP.resx">
-      <DependentUpon>FrameConnectGCP.cs</DependentUpon>
+    <EmbeddedResource Include="FrameConnectAWS.resx">
+      <DependentUpon>FrameConnectAWS.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrameMain.resx">
       <DependentUpon>FrameMain.cs</DependentUpon>
