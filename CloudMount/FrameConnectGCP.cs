@@ -10,19 +10,11 @@ using System.Windows.Forms;
 
 namespace CloudMount
 {
-    public partial class FrameMain : Form
+    public partial class FrameConnectGCP : Form
     {
-        public FrameMain()
+        public FrameConnectGCP()
         {
             InitializeComponent();
-        }
-
-        private void connectToGCPToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var d = new FrameConnectGCP();
-            if (d.ShowDialog() == DialogResult.OK) {
-
-            }
         }
     }
 }
