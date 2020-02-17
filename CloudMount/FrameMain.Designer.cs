@@ -28,12 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrameMain));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cloudToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.connectToGCPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listFiles = new System.Windows.Forms.ListView();
+            this.imageCollectionIcons = new System.Windows.Forms.ImageList(this.components);
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -81,13 +84,23 @@
             // listFiles
             // 
             this.listFiles.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listFiles.ForeColor = System.Drawing.Color.White;
+            this.listFiles.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listFiles.ForeColor = System.Drawing.Color.Black;
             this.listFiles.HideSelection = false;
+            this.listFiles.LargeImageList = this.imageCollectionIcons;
             this.listFiles.Location = new System.Drawing.Point(0, 33);
             this.listFiles.Name = "listFiles";
             this.listFiles.Size = new System.Drawing.Size(1757, 1058);
             this.listFiles.TabIndex = 1;
             this.listFiles.UseCompatibleStateImageBehavior = false;
+            this.listFiles.DoubleClick += new System.EventHandler(this.listFiles_DoubleClick);
+            // 
+            // imageCollectionIcons
+            // 
+            this.imageCollectionIcons.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageCollectionIcons.ImageStream")));
+            this.imageCollectionIcons.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageCollectionIcons.Images.SetKeyName(0, "folder.png");
+            this.imageCollectionIcons.Images.SetKeyName(1, "file.png");
             // 
             // FrameMain
             // 
@@ -116,6 +129,7 @@
         private System.Windows.Forms.ToolStripMenuItem cloudToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem connectToGCPToolStripMenuItem;
         private System.Windows.Forms.ListView listFiles;
+        private System.Windows.Forms.ImageList imageCollectionIcons;
     }
 }
 
