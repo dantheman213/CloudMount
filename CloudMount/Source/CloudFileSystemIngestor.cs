@@ -8,8 +8,9 @@ namespace CloudMount
 {
     public class CloudFileSystemIngestor
     {
-        public static void IngestGcp(CloudFileSystem fs, GcpDataModel gcp)
+        public static CloudFileSystem IngestGcp(GcpDataModel gcp)
         {
+            var fs = new CloudFileSystem();
             var buckets = gcp.client.ListBuckets(gcp.projectId);
             foreach (var bucket in buckets)
             {
@@ -27,6 +28,8 @@ namespace CloudMount
                     fs.AddFileWithAbsolutePath(file.Name);
                 }
             }
+
+            return fs;
         }
     }
 }

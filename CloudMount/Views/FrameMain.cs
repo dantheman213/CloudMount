@@ -41,7 +41,7 @@ namespace CloudMount
 
                         var creds = GoogleCredential.FromFile(gcp.credentialsFilePath);
                         gcp.client = StorageClient.Create(creds);
-                        CloudFileSystemIngestor.IngestGcp(fs, gcp);
+                        fs = CloudFileSystemIngestor.IngestGcp(gcp);
                     }
                     catch (Exception ex)
                     {

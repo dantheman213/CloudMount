@@ -8,10 +8,11 @@ namespace CloudMount
 
         public CloudFileSystem()
         {
+            string prefix = "cloud://";
             root = new CloudFileSystemNode
             {
-                AbsolutePath = "/",
-                Name = "/",
+                AbsolutePath = prefix,
+                Name = prefix,
                 Type = CloudFileSystemNodeTypeEnum.ROOT
             };
         }
