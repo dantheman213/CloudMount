@@ -64,20 +64,70 @@ namespace CloudMount
 
         private void listFiles_DoubleClick(object sender, EventArgs e)
         {
+            if (cloudType == CloudTypeEnum.AWS)
+            {
+
+            }
+            else if(cloudType == CloudTypeEnum.GCP)
+            {
+                listFiles_GCP_DoubleClick(sender, e);
+            }
+        }
+
+        private void listFiles_GCP_DoubleClick(object sender, EventArgs e)
+        {
             if (listFiles.SelectedItems.Count == 1)
             {
                 var item = listFiles.SelectedItems[0];
                 if (item.Tag.ToString() == "bucket")
                 {
-                    fs = new List<string>();
-                    foreach (var obj in gcp.client.ListObjects(item.Text))
+                    IngestCloudFs(item.Text);
+
+                    List<string> collection = new List<string>();
+                    listFiles.Items.Clear();
+                    foreach (var obj in fs)
                     {
-                        Console.WriteLine(obj.Name);
-                        fs.Add(obj.Name);
+                        var parts = obj.Split('/');
+                        if (collection.Find(x => x == parts[0]) == null)
+                        {
+                            collection.Add(parts[0]);
+                            if (parts.Length > 1)
+                            {
+                                // directory
+                                listFiles.Items.Add(parts[0], 0);
+                                listFiles.Items[listFiles.Items.Count - 1].Tag = "directory";
+                            }
+                            else
+                            {
+                                // file
+                                listFiles.Items.Add(parts[0], 1);
+                                listFiles.Items[listFiles.Items.Count - 1].Tag = "file";
+                            }
+                        }
                     }
+                }
+                else if (item.Tag.ToString() == "directory")
+                {
+
+                }
+                else if (item.Tag.ToString() == "file")
+                {
+
                 }
             }
         }
-        
+
+        private void IngestCloudFs(string bucketName)
+        {
+            fs = new List<string>();
+            if (cloudType == CloudTypeEnum.GCP)
+            {
+                foreach (var obj in gcp.client.ListObjects(bucketName))
+                {
+                    Console.WriteLine(obj.Name);
+                    fs.Add(obj.Name);
+                }
+            }
+        }
     }
 }
