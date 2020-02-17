@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using Google.Apis.Auth.OAuth2;
 using Google.Cloud.Storage.V1;
@@ -11,6 +12,7 @@ namespace CloudMount
         private AwsModel aws;
         private GcpModel gcp;
         private string currentPath;
+        private List<string> fs;
 
         public FrameMain()
         {
@@ -67,13 +69,15 @@ namespace CloudMount
                 var item = listFiles.SelectedItems[0];
                 if (item.Tag.ToString() == "bucket")
                 {
+                    fs = new List<string>();
                     foreach (var obj in gcp.client.ListObjects(item.Text))
                     {
                         Console.WriteLine(obj.Name);
-
+                        fs.Add(obj.Name);
                     }
                 }
             }
         }
+        
     }
 }
