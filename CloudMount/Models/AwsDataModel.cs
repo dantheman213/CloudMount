@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CloudMount
 {
-    class AwsModel
+    public class AwsDataModel
     {
         
     }

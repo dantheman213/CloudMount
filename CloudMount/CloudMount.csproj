@@ -85,10 +85,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\AwsModel.cs" />
+    <Compile Include="Models\AwsDataModel.cs" />
     <Compile Include="Enums\CloudTypeEnum.cs" />
     <Compile Include="Models\CloudFileSystemNode.cs" />
     <Compile Include="Enums\CloudFileSystemNodeTypeEnum.cs" />
+    <Compile Include="Source\CloudFileSystemIngestor.cs" />
     <Compile Include="Views\FrameConnect.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -101,8 +102,8 @@
     <Compile Include="Views\FrameMain.Designer.cs">
       <DependentUpon>FrameMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\CloudFileSystem.cs" />
-    <Compile Include="Models\GcpModel.cs" />
+    <Compile Include="Source\CloudFileSystem.cs" />
+    <Compile Include="Models\GcpDataModel.cs" />
     <Compile Include="Source\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Views\FrameConnect.resx">

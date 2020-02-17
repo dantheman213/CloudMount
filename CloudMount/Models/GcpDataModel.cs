@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CloudMount
 {
-    class GcpModel
+    public class GcpDataModel
     {
         public string credentialsFilePath { get; set; }
         public string projectId { get; set; }
