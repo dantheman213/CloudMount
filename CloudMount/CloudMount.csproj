@@ -85,27 +85,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AwsModel.cs" />
-    <Compile Include="CloudTypeEnum.cs" />
-    <Compile Include="FrameConnect.cs">
+    <Compile Include="Models\AwsModel.cs" />
+    <Compile Include="Enums\CloudTypeEnum.cs" />
+    <Compile Include="Models\CloudFileSystemNode.cs" />
+    <Compile Include="Enums\CloudFileSystemNodeTypeEnum.cs" />
+    <Compile Include="Views\FrameConnect.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrameConnect.Designer.cs">
+    <Compile Include="Views\FrameConnect.Designer.cs">
       <DependentUpon>FrameConnect.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrameMain.cs">
+    <Compile Include="Views\FrameMain.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrameMain.Designer.cs">
+    <Compile Include="Views\FrameMain.Designer.cs">
       <DependentUpon>FrameMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="GcpModel.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Models\CloudFileSystem.cs" />
+    <Compile Include="Models\GcpModel.cs" />
+    <Compile Include="Source\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="FrameConnect.resx">
+    <EmbeddedResource Include="Views\FrameConnect.resx">
       <DependentUpon>FrameConnect.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrameMain.resx">
+    <EmbeddedResource Include="Views\FrameMain.resx">
       <DependentUpon>FrameMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
