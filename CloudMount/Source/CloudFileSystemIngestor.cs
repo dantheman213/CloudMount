@@ -13,8 +13,19 @@ namespace CloudMount
             var buckets = gcp.client.ListBuckets(gcp.projectId);
             foreach (var bucket in buckets)
             {
-                Console.WriteLine(bucket.Name);
+                var root = fs.GetRootNode();
+                var child = new CloudFileSystemNode
+                {
+                    Name = bucket.Name,
+                    AbsolutePath = String.Format("{0}{1}", root.AbsolutePath, bucket.Name),
+                    Type = CloudFileSystemNodeTypeEnum.BUCKET
+                };
+                fs.AddChild(root, child);
 
+                foreach (var file in gcp.client.ListObjects(child.Name))
+                {
+                    fs.AddFileWithAbsolutePath(file.Name);
+                }
             }
         }
     }

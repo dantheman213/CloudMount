@@ -11,6 +11,6 @@ namespace CloudMount
         public CloudFileSystemNodeTypeEnum Type { get; set; }
         public string Name { get; set; }
         public string AbsolutePath { get; set; }
-        public CloudFileSystemNode Child { get; set; }
+        public List<CloudFileSystemNode> Children { get; set; }
     }
 }
