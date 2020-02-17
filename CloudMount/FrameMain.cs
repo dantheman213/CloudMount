@@ -78,12 +78,13 @@ namespace CloudMount
         {
             if (listFiles.SelectedItems.Count == 1)
             {
+                // used to dedupe string values in fs
+                List<string> collection = new List<string>();
+
                 var item = listFiles.SelectedItems[0];
                 if (item.Tag.ToString() == "bucket")
                 {
                     IngestCloudFs(item.Text);
-
-                    List<string> collection = new List<string>();
                     listFiles.Items.Clear();
                     foreach (var obj in fs)
                     {
@@ -108,7 +109,37 @@ namespace CloudMount
                 }
                 else if (item.Tag.ToString() == "directory")
                 {
+                    string dir = item.Text;
+                    if (fs.Count > 0)
+                    {
+                        currentPath += dir + "/";
+                        listFiles.Items.Clear();
 
+                        foreach (var obj in fs)
+                        {
+                            if (obj.StartsWith(currentPath))
+                            {
+                                var prunedObj = obj.Substring(currentPath.Length);
+                                var parts = prunedObj.Split('/');
+                                if (collection.Find(x => x == parts[0]) == null)
+                                {
+                                    collection.Add(parts[0]);
+                                    if (parts.Length > 1)
+                                    {
+                                        // directory
+                                        listFiles.Items.Add(parts[0], 0);
+                                        listFiles.Items[listFiles.Items.Count - 1].Tag = "directory";
+                                    }
+                                    else
+                                    {
+                                        // file
+                                        listFiles.Items.Add(parts[0], 1);
+                                        listFiles.Items[listFiles.Items.Count - 1].Tag = "file";
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
                 else if (item.Tag.ToString() == "file")
                 {
