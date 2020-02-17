@@ -32,7 +32,6 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cloudToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.connectToAWSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.connectToGCPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listFiles = new System.Windows.Forms.ListView();
             this.menuStrip1.SuspendLayout();
@@ -67,25 +66,17 @@
             // cloudToolStripMenuItem
             // 
             this.cloudToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.connectToAWSToolStripMenuItem,
             this.connectToGCPToolStripMenuItem});
             this.cloudToolStripMenuItem.Name = "cloudToolStripMenuItem";
             this.cloudToolStripMenuItem.Size = new System.Drawing.Size(71, 29);
             this.cloudToolStripMenuItem.Text = "Cloud";
             // 
-            // connectToAWSToolStripMenuItem
-            // 
-            this.connectToAWSToolStripMenuItem.Name = "connectToAWSToolStripMenuItem";
-            this.connectToAWSToolStripMenuItem.Size = new System.Drawing.Size(252, 30);
-            this.connectToAWSToolStripMenuItem.Text = "Connect to AWS";
-            this.connectToAWSToolStripMenuItem.Click += new System.EventHandler(this.connectToAWSToolStripMenuItem_Click);
-            // 
             // connectToGCPToolStripMenuItem
             // 
             this.connectToGCPToolStripMenuItem.Name = "connectToGCPToolStripMenuItem";
             this.connectToGCPToolStripMenuItem.Size = new System.Drawing.Size(252, 30);
-            this.connectToGCPToolStripMenuItem.Text = "Connect to GCP";
-            this.connectToGCPToolStripMenuItem.Click += new System.EventHandler(this.connectToGCPToolStripMenuItem_Click);
+            this.connectToGCPToolStripMenuItem.Text = "Connect to Cloud";
+            this.connectToGCPToolStripMenuItem.Click += new System.EventHandler(this.connectToolStripMenuItem_Click);
             // 
             // listFiles
             // 
@@ -123,7 +114,6 @@
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cloudToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem connectToAWSToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem connectToGCPToolStripMenuItem;
         private System.Windows.Forms.ListView listFiles;
     }

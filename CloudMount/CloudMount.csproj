@@ -85,11 +85,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FrameConnectAWS.cs">
+    <Compile Include="AwsModel.cs" />
+    <Compile Include="CloudTypeEnum.cs" />
+    <Compile Include="FrameConnect.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrameConnectAWS.Designer.cs">
-      <DependentUpon>FrameConnectAWS.cs</DependentUpon>
+    <Compile Include="FrameConnect.Designer.cs">
+      <DependentUpon>FrameConnect.cs</DependentUpon>
     </Compile>
     <Compile Include="FrameMain.cs">
       <SubType>Form</SubType>
@@ -97,10 +99,11 @@
     <Compile Include="FrameMain.Designer.cs">
       <DependentUpon>FrameMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="GcpModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="FrameConnectAWS.resx">
-      <DependentUpon>FrameConnectAWS.cs</DependentUpon>
+    <EmbeddedResource Include="FrameConnect.resx">
+      <DependentUpon>FrameConnect.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrameMain.resx">
       <DependentUpon>FrameMain.cs</DependentUpon>
