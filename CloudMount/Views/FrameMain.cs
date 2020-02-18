@@ -41,14 +41,44 @@ namespace CloudMount
 
                         var creds = GoogleCredential.FromFile(gcp.credentialsFilePath);
                         gcp.client = StorageClient.Create(creds);
-                        fs = CloudFileSystemIngestor.IngestGcp(gcp);
                     }
                     catch (Exception ex)
                     {
                         MessageBox.Show(ex.Message);
                     }
+
+                    fs = CloudFileSystemIngestor.IngestGcp(gcp);
+                    currentDirectoryNode = fs.GetRootNode();
+                    loadListFilesAtDirPath(currentDirectoryNode.AbsolutePath);
                 }
             }
+        }
+
+        private void loadListFilesAtDirPath(string path)
+        {
+            var node = fs.FindNodeAtAbsolutePath(path);
+            if (node != null && node.Children != null && node.Children.Count > 0)
+            {
+                listFiles.Items.Clear();
+                foreach(var child in node.Children)
+                {
+                    int imageIndex = 0;
+                    if (child.Type == CloudFileSystemNodeTypeEnum.BUCKET || child.Type == CloudFileSystemNodeTypeEnum.DIRECTORY)
+                    {
+                        imageIndex = 0;
+                    }
+                    else if (child.Type == CloudFileSystemNodeTypeEnum.FILE)
+                    {
+                        imageIndex = 1;
+                    }
+
+                    var listItem = new ListViewItem(child.Name, imageIndex);
+                    listItem.Tag = child;
+                    listFiles.Items.Add(listItem);
+                }
+            }
+          
+
         }
 
         private void FrameMain_Load(object sender, EventArgs e)
@@ -58,14 +88,23 @@ namespace CloudMount
 
         private void listFiles_DoubleClick(object sender, EventArgs e)
         {
-            // TODO
-            if (cloudType == CloudTypeEnum.AWS)
+            if (listFiles.SelectedItems.Count == 1)
             {
-
-            }
-            else if(cloudType == CloudTypeEnum.GCP)
-            {
-           
+                var selectedItem = listFiles.SelectedItems[0];
+                var node = (CloudFileSystemNode)selectedItem.Tag;
+                if (node != null)
+                {
+                    currentDirectoryNode = node;
+                    
+                    if(currentDirectoryNode.Type == CloudFileSystemNodeTypeEnum.BUCKET || currentDirectoryNode.Type == CloudFileSystemNodeTypeEnum.DIRECTORY)
+                    {
+                        loadListFilesAtDirPath(currentDirectoryNode.AbsolutePath);
+                    }
+                    else if(currentDirectoryNode.Type == CloudFileSystemNodeTypeEnum.FILE)
+                    {
+                        // TODO
+                    }
+                }
             }
         }
     }

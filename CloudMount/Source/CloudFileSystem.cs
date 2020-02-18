@@ -128,32 +128,42 @@ namespace CloudMount
 
         public CloudFileSystemNode FindNodeAtAbsolutePath(string path)
         {
-            path = RemovePrefix(path);
-            var parts = path.Split('/');
-            var currentNode = root;
-            foreach (var part in parts)
+            if (!String.IsNullOrEmpty(path))
             {
-                var found = false;
-                if (currentNode.Children != null)
+                path = RemovePrefix(path);
+                if (String.IsNullOrEmpty(path))
                 {
-                    foreach (var child in currentNode.Children)
+                    return root;
+                }
+
+                var parts = path.Split('/');
+                var currentNode = root;
+                foreach (var part in parts)
+                {
+                    var found = false;
+                    if (currentNode.Children != null)
                     {
-                        if (child.Name == part)
+                        foreach (var child in currentNode.Children)
                         {
-                            currentNode = child;
-                            found = true;
-                            break;
+                            if (child.Name == part)
+                            {
+                                currentNode = child;
+                                found = true;
+                                break;
+                            }
                         }
+                    }
+
+                    if (!found)
+                    {
+                        return null;
                     }
                 }
 
-                if (!found)
-                {
-                    return null;
-                }
+                return currentNode;
             }
-
-            return currentNode;
+            
+            return null;
         }
 
         public CloudFileSystemNode GetRootNode()
@@ -163,19 +173,22 @@ namespace CloudMount
 
         private string RemovePrefix(string path)
         {
-            if (path.StartsWith("cloud://"))
+           if (!String.IsNullOrEmpty(path))
             {
-                path = path.Substring(8);
-            }
-            else if (path.StartsWith("/"))
-            {
-                path = path.Substring(1);
-            }
+                if (path.StartsWith("cloud://"))
+                {
+                    path = path.Substring(8);
+                }
+                else if (path.StartsWith("/"))
+                {
+                    path = path.Substring(1);
+                }
 
-            // Remove "/" if at end of path
-            if(path.Substring(path.Length - 1) == "/")
-            {
-                path.Substring(0, path.Length - 2);
+                // Remove "/" if at end of path
+                if (path.Length > 0 && path.Substring(path.Length - 1) == "/")
+                {
+                    path.Substring(0, path.Length - 2);
+                }
             }
 
             return path;
