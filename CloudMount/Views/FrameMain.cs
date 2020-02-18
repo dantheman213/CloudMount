@@ -147,7 +147,18 @@ namespace CloudMount
 
         private void downloadSelectedItemsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(Convert.ToString(listFiles.SelectedItems.Count));
+            var items = listFiles.SelectedItems;
+            if (items.Count > 0)
+            {
+                var d = new FolderBrowserDialog();
+                d.SelectedPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+                if (d.ShowDialog() == DialogResult.OK)
+                {
+                    var path = d.SelectedPath;
+                    // TODO
+                    MessageBox.Show(Convert.ToString(listFiles.SelectedItems.Count));
+                }
+            }
         }
     }
 }
