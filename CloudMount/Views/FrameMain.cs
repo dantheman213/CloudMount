@@ -59,6 +59,8 @@ namespace CloudMount
             var node = fs.FindNodeAtAbsolutePath(path);
             if (node != null && node.Children != null && node.Children.Count > 0)
             {
+                currentDirectoryNode = node;
+
                 listFiles.Items.Clear();
                 foreach(var child in node.Children)
                 {
@@ -76,9 +78,9 @@ namespace CloudMount
                     listItem.Tag = child;
                     listFiles.Items.Add(listItem);
                 }
-            }
-          
 
+                updatePathUi();
+            }
         }
 
         private void FrameMain_Load(object sender, EventArgs e)
@@ -111,6 +113,36 @@ namespace CloudMount
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void toolStripButtonUp_Click(object sender, EventArgs e)
+        {
+            var path = CloudFileSystem.GetParentDirectoryPath(currentDirectoryNode.AbsolutePath);
+            loadListFilesAtDirPath(path);
+        }
+
+        private void updatePathUi()
+        {
+            toolStripTextCloudPath.Text = currentDirectoryNode.AbsolutePath;
+        }
+
+        private void toolStripTextCloudPath_KeyPress(object sender, KeyPressEventArgs e)
+        {
+           
+        }
+
+        private void toolStripTextCloudPath_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                var path = toolStripTextCloudPath.Text.Trim();
+                var node = fs.FindNodeAtAbsolutePath(path);
+                if (node != null)
+                {
+                    currentDirectoryNode = node;
+                    loadListFilesAtDirPath(path);
+                }
+            }
         }
     }
 }

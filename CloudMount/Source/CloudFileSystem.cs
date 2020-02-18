@@ -171,7 +171,25 @@ namespace CloudMount
             return root;
         }
 
-        private string RemovePrefix(string path)
+        public static string AddPrefix(string path)
+        {
+            if (!String.IsNullOrWhiteSpace(path))
+            {
+                if (path.StartsWith("cloud://"))
+                {
+                    return path;
+                }
+                if (path.StartsWith("/"))
+                {
+                    path = path.Substring(1);
+                }
+            }
+
+            path = String.Format("cloud://{0}", path);
+            return path;
+        }
+
+        public static string RemovePrefix(string path)
         {
            if (!String.IsNullOrEmpty(path))
             {
@@ -185,12 +203,32 @@ namespace CloudMount
                 }
 
                 // Remove "/" if at end of path
-                if (path.Length > 0 && path.Substring(path.Length - 1) == "/")
+                if (path.Length > 0 && path.Substring(path.Length - 1, 1) == "/")
                 {
-                    path.Substring(0, path.Length - 2);
+                    path = path.Substring(0, path.Length - 1);
                 }
             }
 
+            return path;
+        }
+
+        public static string GetParentDirectoryPath(string path)
+        {
+            if(!String.IsNullOrEmpty(path))
+            {
+                path = CloudFileSystem.RemovePrefix(path);
+                var pos = path.LastIndexOf("/");
+                if (pos > -1 && path.Length > 0)
+                {
+                    path = path.Substring(0, pos);
+                }
+                else
+                {
+                    path = "";
+                }
+            }
+          
+            path = AddPrefix(path);
             return path;
         }
     }
