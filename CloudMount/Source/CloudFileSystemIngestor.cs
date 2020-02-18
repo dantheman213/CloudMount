@@ -25,7 +25,8 @@ namespace CloudMount
 
                 foreach (var file in gcp.client.ListObjects(child.Name))
                 {
-                    fs.AddFileWithAbsolutePath(file.Name);
+                    var path = String.Format("cloud://{0}/{1}", bucket.Name, file.Name);
+                    fs.AddFileWithAbsolutePath(path);
                 }
             }
 
