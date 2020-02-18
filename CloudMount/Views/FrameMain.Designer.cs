@@ -42,6 +42,9 @@
             this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.toolStripButtonUp = new System.Windows.Forms.ToolStripButton();
             this.toolStripTextCloudPath = new System.Windows.Forms.ToolStripTextBox();
+            this.storageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.downloadSelectedItemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.uploadToCurrentDirectoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.SuspendLayout();
@@ -52,6 +55,7 @@
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.cloudToolStripMenuItem,
+            this.storageToolStripMenuItem,
             this.helpToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
@@ -85,7 +89,7 @@
             // connectToGCPToolStripMenuItem
             // 
             this.connectToGCPToolStripMenuItem.Name = "connectToGCPToolStripMenuItem";
-            this.connectToGCPToolStripMenuItem.Size = new System.Drawing.Size(235, 30);
+            this.connectToGCPToolStripMenuItem.Size = new System.Drawing.Size(252, 30);
             this.connectToGCPToolStripMenuItem.Text = "Connect to Cloud";
             this.connectToGCPToolStripMenuItem.Click += new System.EventHandler(this.connectToolStripMenuItem_Click);
             // 
@@ -156,6 +160,28 @@
             this.toolStripTextCloudPath.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.toolStripTextCloudPath_KeyPress);
             this.toolStripTextCloudPath.KeyUp += new System.Windows.Forms.KeyEventHandler(this.toolStripTextCloudPath_KeyUp);
             // 
+            // storageToolStripMenuItem
+            // 
+            this.storageToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.downloadSelectedItemsToolStripMenuItem,
+            this.uploadToCurrentDirectoryToolStripMenuItem});
+            this.storageToolStripMenuItem.Name = "storageToolStripMenuItem";
+            this.storageToolStripMenuItem.Size = new System.Drawing.Size(85, 29);
+            this.storageToolStripMenuItem.Text = "&Storage";
+            // 
+            // downloadSelectedItemsToolStripMenuItem
+            // 
+            this.downloadSelectedItemsToolStripMenuItem.Name = "downloadSelectedItemsToolStripMenuItem";
+            this.downloadSelectedItemsToolStripMenuItem.Size = new System.Drawing.Size(317, 30);
+            this.downloadSelectedItemsToolStripMenuItem.Text = "Download Selected Items";
+            this.downloadSelectedItemsToolStripMenuItem.Click += new System.EventHandler(this.downloadSelectedItemsToolStripMenuItem_Click);
+            // 
+            // uploadToCurrentDirectoryToolStripMenuItem
+            // 
+            this.uploadToCurrentDirectoryToolStripMenuItem.Name = "uploadToCurrentDirectoryToolStripMenuItem";
+            this.uploadToCurrentDirectoryToolStripMenuItem.Size = new System.Drawing.Size(317, 30);
+            this.uploadToCurrentDirectoryToolStripMenuItem.Text = "Upload To Current Directory";
+            // 
             // FrameMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -192,6 +218,9 @@
         private System.Windows.Forms.ToolStrip toolStrip;
         private System.Windows.Forms.ToolStripButton toolStripButtonUp;
         private System.Windows.Forms.ToolStripTextBox toolStripTextCloudPath;
+        private System.Windows.Forms.ToolStripMenuItem storageToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem downloadSelectedItemsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem uploadToCurrentDirectoryToolStripMenuItem;
     }
 }
 

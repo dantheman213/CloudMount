@@ -144,5 +144,10 @@ namespace CloudMount
                 }
             }
         }
+
+        private void downloadSelectedItemsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(Convert.ToString(listFiles.SelectedItems.Count));
+        }
     }
 }
