@@ -154,11 +154,25 @@ namespace CloudMount
                 d.SelectedPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
                 if (d.ShowDialog() == DialogResult.OK)
                 {
-                    var path = d.SelectedPath;
-                    // TODO
-                    MessageBox.Show(Convert.ToString(listFiles.SelectedItems.Count));
+                    var downloadPath = d.SelectedPath;
+                    var list = new List<string>();
+                    foreach (ListViewItem item in items)
+                    {
+                        var node = (CloudFileSystemNode)item.Tag;
+                        list.AddRange(fs.GetAllFilesAtDirPathAsList(node.AbsolutePath));
+                    }
+
+                    foreach(var filePath in list)
+                    {
+                        addItemToFileTransferList(filePath);
+                    }
                 }
             }
+        }
+
+        private void addItemToFileTransferList(string path)
+        {
+            listFileTransfer.Items.Add(path);
         }
     }
 }

@@ -231,5 +231,33 @@ namespace CloudMount
             path = AddPrefix(path);
             return path;
         }
+
+        public List<string> GetAllFilesAtDirPathAsList(string path)
+        {
+            var items = new List<string>();
+            if (!String.IsNullOrEmpty(path))
+            {
+                var parentNode = FindNodeAtAbsolutePath(path);
+                if (parentNode != null && (parentNode.Type == CloudFileSystemNodeTypeEnum.DIRECTORY || parentNode.Type == CloudFileSystemNodeTypeEnum.BUCKET))
+                {
+                    if (parentNode.Children != null && parentNode.Children.Count > 0)
+                    {
+                        foreach (var child in parentNode.Children)
+                        {
+                            if (child.Type == CloudFileSystemNodeTypeEnum.DIRECTORY || child.Type == CloudFileSystemNodeTypeEnum.BUCKET)
+                            {
+                                items.AddRange(GetAllFilesAtDirPathAsList(child.AbsolutePath));
+                            }
+                            else if (child.Type == CloudFileSystemNodeTypeEnum.FILE)
+                            {
+                                items.Add(child.AbsolutePath);
+                            }
+                        }
+                    }
+                }
+            }
+
+            return items;
+        }
     }
 }
